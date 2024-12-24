@@ -7,6 +7,8 @@ public abstract class Spawner : DanMonoBehaviour
     [SerializeField] protected Transform holder;
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected List<Transform> poolObjs;
+    [SerializeField] protected int spawnedCount = 0;
+    public int SpawnedCount => spawnedCount;
 
     protected override void LoadComponents()
     {
@@ -58,6 +60,7 @@ public abstract class Spawner : DanMonoBehaviour
         //newPrefab.rotation = spawnRot;
 
         newPrefab.parent = this.holder;
+        this.spawnedCount++;
         return newPrefab;
     }
 
@@ -81,6 +84,7 @@ public abstract class Spawner : DanMonoBehaviour
     {
         this.poolObjs.Add(obj);
         obj.gameObject.SetActive(false);
+        this.spawnedCount--;
     }
 
     public virtual Transform GetPrefabByName(string prefabName)

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [RequireComponent(typeof(SphereCollider))]
 public class DamageReceiver : DanMonoBehaviour
@@ -14,6 +13,12 @@ public class DamageReceiver : DanMonoBehaviour
 
     protected override void OnEnable()
     {
+        this.Reborn();
+    }
+
+    protected override void ResetValue()
+    {
+        base.ResetValue();
         this.Reborn();
     }
 

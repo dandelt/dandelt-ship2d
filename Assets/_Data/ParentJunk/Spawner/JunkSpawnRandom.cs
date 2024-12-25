@@ -42,7 +42,9 @@ public class JunkSpawnRandom : DanMonoBehaviour
         Transform randPoint = this.junkSpawnerCtrl.JunkSpawnPoint.Rand();
         Vector3 pos = randPoint.position;
         Quaternion rot = transform.rotation;
-        Transform obj = this.junkSpawnerCtrl.JunkSpawner.Spawn(JunkSpawner.MeteoriteOne, pos, rot);
+
+        Transform prefab = this.junkSpawnerCtrl.JunkSpawner.RandomPrefab();
+        Transform obj = this.junkSpawnerCtrl.JunkSpawner.Spawn(prefab, pos, rot);
         obj.gameObject.SetActive(true);
         //Invoke(nameof(this.JunkSpawning), 1f);
     }
@@ -52,4 +54,6 @@ public class JunkSpawnRandom : DanMonoBehaviour
         int currentJunk = this.junkSpawnerCtrl.JunkSpawner.SpawnedCount;
         return currentJunk >= this.randomLimit;
     }
+
+    
 }

@@ -53,11 +53,13 @@ public abstract class Spawner : DanMonoBehaviour
             Debug.LogWarning("Prefab not found: " + prefabName);
             return null;
         }
-
+        return this.Spawn(prefab, spawnPos, spawnRot);
+        
+    }
+    public virtual Transform Spawn(Transform prefab, Vector3 spawnPos, Quaternion spawnRot)
+    {
         Transform newPrefab = this.GetObjectFromPool(prefab);
         newPrefab.SetPositionAndRotation(spawnPos, spawnRot);
-        //newPrefab.position = spawnPos;
-        //newPrefab.rotation = spawnRot;
 
         newPrefab.parent = this.holder;
         this.spawnedCount++;
@@ -95,6 +97,12 @@ public abstract class Spawner : DanMonoBehaviour
         }
 
         return null;
+    }
+
+    public virtual Transform RandomPrefab()
+    {
+        int rand = Random.Range(0,prefabs.Count);
+        return this.prefabs[rand];
     }
 
 }
